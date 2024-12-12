@@ -17,9 +17,6 @@
 # define hardware platform
 PRODUCT_PLATFORM := sm8150
 
-# Enable updating of APEXes
-$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
-
 include device/google/coral/device.mk
 
 # Set Vendor SPL to match platform
@@ -78,6 +75,9 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_COPY_FILES += \
     device/google/coral/init.logging.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.$(PRODUCT_PLATFORM).logging.rc
 
+PRODUCT_COPY_FILES += \
+    device/google/coral/task_profiles.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
+
 # Pixelstats broken mic detection
 PRODUCT_PROPERTY_OVERRIDES += vendor.audio.mic_break=true
 
@@ -120,3 +120,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_ENFORCE_PRODUCT_PARTITION_INTERFACE := true
 
+# Workaround for prebuilt Qualcomm neural network HAL
+PRODUCT_PACKAGES += \
+    libprotobuf-cpp-full-3.9.1-vendorcompat \
+    libprotobuf-cpp-lite-3.9.1-vendorcompat

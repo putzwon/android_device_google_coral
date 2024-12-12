@@ -18,6 +18,7 @@ allow hal_face_default hidl_token_hwservice:hwservice_manager find;
 
 #Allow face hal to talk to cameraserver
 allow hal_face_default fwk_camera_hwservice:hwservice_manager find;
+allow hal_face_default fwk_camera_service:service_manager find;
 binder_call(hal_face_default, camera_service_server)
 binder_call(camera_service_server, hal_face_default)
 
@@ -37,13 +38,10 @@ allow hal_face_default mnt_vendor_file:dir search;
 allow hal_face_default system_app:fd use;
 
 
-# Grant incidentd and FaceDebugService access to the face HAL debug images
+# Grant incidentd access to the face HAL debug images
 userdebug_or_eng(`
   allow hal_face_default incidentd:fd use;
   allow hal_face_default incidentd:fifo_file write;
-
-  allow hal_face_default face_debug:fd use;
-  allow hal_face_default face_debug:fifo_file write;
 ')
 
 get_prop(hal_face_default, camera_config_prop)

@@ -46,6 +46,7 @@ BOARD_KERNEL_CMDLINE += usbcore.autosuspend=7
 BOARD_KERNEL_CMDLINE += androidboot.usbcontroller=a600000.dwc3 swiotlb=2048
 BOARD_KERNEL_CMDLINE += androidboot.boot_devices=soc/1d84000.ufshc
 BOARD_KERNEL_CMDLINE += loop.max_part=7
+BOARD_KERNEL_CMDLINE += loop.hw_queue_depth=31
 BOARD_KERNEL_CMDLINE += cgroup_disable=pressure
 
 BOARD_KERNEL_BASE        := 0x00000000
@@ -97,7 +98,6 @@ BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
 # userdata.img
 TARGET_USERIMAGES_USE_F2FS := true
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 10737418240
-BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 
 # persist.img
 BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
@@ -207,8 +207,6 @@ TARGET_USES_HWC2 := true
 TARGET_USES_DISPLAY_RENDER_INTENTS := true
 TARGET_USES_COLOR_METADATA := true
 TARGET_USES_DRM_PP := true
-TARGET_HAS_WIDE_COLOR_DISPLAY := true
-TARGET_HAS_HDR_DISPLAY := true
 
 # Vendor Interface Manifest
 DEVICE_MANIFEST_FILE := device/google/coral/manifest.xml

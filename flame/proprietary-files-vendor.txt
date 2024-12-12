@@ -1,6 +1,10 @@
-# All blobs are extracted from Google factory images for each new ASB
+# All blobs below are extracted from the release mentioned in proprietary-files.txt
+
+# libril-qcril-hook-oem depends on libril, which is a gnu makefile target
+# lowi-server, libcne, libwqe depend on libwpa_client, which is a gnu makefile target
+
 vendor/app/CACertService/CACertService.apk
-vendor/app/CneApp/CneApp.apk
+vendor/app/CneApp/CneApp.apk;REQUIRED=CneApp.libvndfwk_detect_jni.qti_symlink
 vendor/app/IWlanService/IWlanService.apk
 vendor/app/TimeService/TimeService.apk
 vendor/app/adreno_graphics_driver/adreno_graphics_driver.apk;PRESIGNED
@@ -16,8 +20,8 @@ vendor/bin/diag_klog
 vendor/bin/diag_mdlog
 vendor/bin/diag_socket_log
 vendor/bin/diag_uart_log
-vendor/bin/hw/android.hardware.biometrics.face@1.0-service.google
 vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti
+vendor/bin/hw/android.hardware.camera.provider@2.7-service-google
 vendor/bin/hw/android.hardware.confirmationui@1.0-service-google
 vendor/bin/hw/android.hardware.drm-service.widevine
 vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qti
@@ -36,9 +40,8 @@ vendor/bin/hw/citadel_updater
 vendor/bin/hw/citadeld
 vendor/bin/hw/init_citadel
 vendor/bin/hw/qcrild
-vendor/bin/hw/vendor.google.airbrush@1.0-service
+vendor/bin/hw/vendor.google.airbrush@1.0-service;DISABLE_CHECKELF
 vendor/bin/hw/vendor.google.radioext@1.0-service
-vendor/bin/hw/vendor.google.wifi_ext@1.0-service-vendor
 vendor/bin/hw/vendor.google.wireless_charger@1.3-service-vendor
 vendor/bin/hw/vendor.qti.hardware.qseecom@1.0-service
 vendor/bin/hw/vendor.qti.hardware.qteeconnector@1.0-service
@@ -51,7 +54,7 @@ vendor/bin/imsrcsd
 vendor/bin/irsc_util
 vendor/bin/ks
 vendor/bin/loc_launcher
-vendor/bin/lowi-server
+vendor/bin/lowi-server;DISABLE_CHECKELF
 vendor/bin/modem_svc
 vendor/bin/msm_irqbalance
 vendor/bin/netmgrd
@@ -242,8 +245,8 @@ vendor/etc/default_c2proto.mps
 vendor/etc/default_coral.mps
 vendor/etc/default_f2proto.mps
 vendor/etc/default_flame.mps
-vendor/etc/init/android.hardware.biometrics.face@1.0-service.google.rc
 vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc
+vendor/etc/init/android.hardware.camera.provider@2.7-service-google.rc
 vendor/etc/init/android.hardware.confirmationui@1.0-service-google.rc
 vendor/etc/init/android.hardware.drm-service.widevine.rc
 vendor/etc/init/android.hardware.gatekeeper@1.0-service-qti.rc
@@ -272,7 +275,6 @@ vendor/etc/init/rlsservice.rc
 vendor/etc/init/ssgtzd.rc
 vendor/etc/init/vendor.google.airbrush@1.0-service.rc
 vendor/etc/init/vendor.google.radioext@1.0-service.rc
-vendor/etc/init/vendor.google.wifi_ext@1.0-service.rc
 vendor/etc/init/vendor.google.wireless_charger@1.3-service.rc
 vendor/etc/init/vendor.qti.adsprpc-service.rc
 vendor/etc/init/vendor.qti.cdsprpc-service.rc
@@ -421,15 +423,14 @@ vendor/etc/sensors/proto/sns_wrist_tilt_gesture.proto
 vendor/etc/st54j_aram.txt
 vendor/etc/st54j_aram_cts.txt
 vendor/etc/thermal-engine.conf
+vendor/etc/vintf/manifest/android.hardware.camera.provider@2.7-service-google.xml
 vendor/etc/vintf/manifest/android.hardware.confirmationui@1.0-service-google.xml
 vendor/etc/vintf/manifest/android.hardware.identity.strongbox.xml
 vendor/etc/vintf/manifest/android.hardware.keymaster@4.1-service.citadel.xml
 vendor/etc/vintf/manifest/android.hardware.neuralnetworks@1.3-service-qti.xml
 vendor/etc/vintf/manifest/android.hardware.weaver@1.0-service.citadel.xml
 vendor/etc/vintf/manifest/manifest_android.hardware.drm-service.widevine.xml
-vendor/etc/vintf/manifest/manifest_face.xml
 vendor/etc/vintf/manifest/manifest_input.processor-service.xml
-vendor/etc/vintf/manifest/manifest_wifi_ext.xml
 vendor/etc/vintf/manifest/rebootescrow-citadel.xml
 vendor/etc/vintf/manifest/vendor.google.wireless_charger@1.3-service-vendor.xml
 vendor/etc/xtra_root_cert.pem
@@ -616,15 +617,8 @@ vendor/firmware/widevine.b07
 vendor/firmware/widevine.mdt
 vendor/firmware/wlanmdsp.mbn
 vendor/framework/com.google.android.camera.experimental2019.jar
-vendor/lib/adsp_camera/libhalide_hexagon_remote_skel.so
+vendor/lib/adsp_camera/libhalide_hexagon_remote_skel.so;DISABLE_DEPS
 vendor/lib/btaudio_offload_if.so
-vendor/lib/camera/components/com.qti.eisv2.so
-vendor/lib/camera/components/com.qti.eisv3.so
-vendor/lib/camera/components/com.qti.stats.afd.so
-vendor/lib/camera/components/com.qti.stats.asd.so
-vendor/lib/camera/components/com.qti.stats.localhistogram.so
-vendor/lib/camera/components/com.qti.stats.pdlibsony.so
-vendor/lib/camera/components/com.qti.stats.pdlibwrapper.so
 vendor/lib/com.qualcomm.qti.imscmservice@1.0.so
 vendor/lib/com.qualcomm.qti.imscmservice@2.0.so
 vendor/lib/com.qualcomm.qti.imscmservice@2.1.so
@@ -634,10 +628,10 @@ vendor/lib/com.qualcomm.qti.uceservice@2.1.so
 vendor/lib/com.qualcomm.qti.uceservice@2.2.so
 vendor/lib/com.qualcomm.qti.uceservice@2.3.so
 vendor/lib/egl/eglSubDriverAndroid.so
-vendor/lib/egl/libEGL_adreno.so
+vendor/lib/egl/libEGL_adreno.so;SYMLINK=vendor/lib/libEGL_adreno.so
 vendor/lib/egl/libGLESv1_CM_adreno.so
-vendor/lib/egl/libGLESv2_adreno.so
-vendor/lib/egl/libq3dtools_adreno.so
+vendor/lib/egl/libGLESv2_adreno.so;SYMLINK=vendor/lib/libGLESv2_adreno.so
+vendor/lib/egl/libq3dtools_adreno.so;SYMLINK=vendor/lib/libq3dtools_adreno.so
 vendor/lib/egl/libq3dtools_esx.so
 vendor/lib/hw/android.hardware.bluetooth@1.0-impl-qti.so
 vendor/lib/hw/android.hardware.gatekeeper@1.0-impl-qti.so
@@ -671,7 +665,7 @@ vendor/lib/libGPTEE_vendor.so
 vendor/lib/libGPreqcancel.so
 vendor/lib/libGPreqcancel_svc.so
 vendor/lib/libI420colorconvert.so
--vendor/lib/libMpeg4SwEncoder.so
+vendor/lib/libMpeg4SwEncoder.so
 vendor/lib/libOmxAacDec.so
 vendor/lib/libOmxAlacDec.so
 vendor/lib/libOmxAlacDecSw.so
@@ -733,7 +727,7 @@ vendor/lib/libcdfw_remote_api.so
 vendor/lib/libcdsp_default_listener.so
 vendor/lib/libcdsprpc.so
 vendor/lib/libcirrusspkrprot.so
-vendor/lib/libcne.so
+vendor/lib/libcne.so;DISABLE_CHECKELF
 vendor/lib/libcneapiclient.so
 vendor/lib/libcneoplookup.so
 vendor/lib/libcneqmiutils.so
@@ -800,6 +794,7 @@ vendor/lib/libmaxxaudio.so
 vendor/lib/libmaxxaudioqdsp.so
 vendor/lib/libmdmdetect.so
 vendor/lib/libmdsprpc.so
+vendor/lib/libmedia_ecoservice.so
 vendor/lib/libminkdescriptor.so
 vendor/lib/libminksocket.so
 vendor/lib/libmm-color-convertor.so
@@ -853,7 +848,7 @@ vendor/lib/librcc.so
 vendor/lib/libril-qc-logger.so
 vendor/lib/libril-qc-ltedirectdisc.so
 vendor/lib/libril-qc-radioconfig.so
-vendor/lib/libril-qcril-hook-oem.so
+vendor/lib/libril-qcril-hook-oem.so;DISABLE_CHECKELF
 vendor/lib/librilqmiservices.so
 vendor/lib/librmnetctl.so
 vendor/lib/librmp.so
@@ -870,7 +865,7 @@ vendor/lib/libsdm-colormgr-algo.so
 vendor/lib/libsdm-diag.so
 vendor/lib/libsdm-disp-vndapis.so
 vendor/lib/libsdmextension.so
--vendor/lib/libsdsprpc.so
+vendor/lib/libsdsprpc.so
 vendor/lib/libsecureui.so
 vendor/lib/libsecureui_svcsock.so
 vendor/lib/libsensorslog.so
@@ -913,7 +908,7 @@ vendor/lib/libvpphvx.so
 vendor/lib/libvppimmotion.so
 vendor/lib/libvsc.so
 vendor/lib/libwms.so
-vendor/lib/libwqe.so
+vendor/lib/libwqe.so;DISABLE_CHECKELF
 vendor/lib/libxml.so
 vendor/lib/libxtadapter.so
 vendor/lib/qcrild_librilutils.so
@@ -982,7 +977,7 @@ vendor/lib/vendor.qti.hardware.qteeconnector@1.0.so
 vendor/lib/vendor.qti.hardware.radio.am@1.0.so
 vendor/lib/vendor.qti.hardware.radio.atcmdfwd@1.0.so
 vendor/lib/vendor.qti.hardware.slmadapter@1.0.so
-vendor/lib/vendor.qti.hardware.tui_comm@1.0.so
+vendor/lib/vendor.qti.hardware.tui_comm@1.0.so;MODULE_SUFFIX=-vendor
 vendor/lib/vendor.qti.hardware.wifidisplaysession@1.0.so
 vendor/lib/vendor.qti.hardware.wigig.netperftuner@1.0.so
 vendor/lib/vendor.qti.ims.callcapability@1.0.so
@@ -994,7 +989,7 @@ vendor/lib/vendor.qti.ims.rcsconfig@1.1.so
 vendor/lib/vendor.qti.ims.rcsconfig@2.0.so
 vendor/lib/vendor.qti.ims.rcsconfig@2.1.so
 vendor/lib/vendor.qti.imsrtpservice@3.0-service-Impl.so
-vendor/lib/vendor.qti.imsrtpservice@3.0.so
+vendor/lib/vendor.qti.imsrtpservice@3.0.so;MODULE_SUFFIX=-vendor
 vendor/lib/vendor.qti.latency@2.0.so
 vendor/lib/vendor.qti.latency@2.1.so
 vendor/lib/vendor.qti.power.pasrmanager@1.0.so
@@ -1094,13 +1089,12 @@ vendor/lib64/com.qualcomm.qti.uceservice@2.2.so
 vendor/lib64/com.qualcomm.qti.uceservice@2.3.so
 vendor/lib64/deviceInfoServiceModule.so
 vendor/lib64/egl/eglSubDriverAndroid.so
-vendor/lib64/egl/libEGL_adreno.so
+vendor/lib64/egl/libEGL_adreno.so;SYMLINK=vendor/lib64/libEGL_adreno.so
 vendor/lib64/egl/libGLESv1_CM_adreno.so
-vendor/lib64/egl/libGLESv2_adreno.so
-vendor/lib64/egl/libq3dtools_adreno.so
+vendor/lib64/egl/libGLESv2_adreno.so;SYMLINK=vendor/lib64/libGLESv2_adreno.so
+vendor/lib64/egl/libq3dtools_adreno.so;SYMLINK=vendor/lib64/libq3dtools_adreno.so
 vendor/lib64/egl/libq3dtools_esx.so
 vendor/lib64/g3a.data.manager.vendor.so
-vendor/lib64/google_wifi_firmware_config_info_cc_proto.so
 vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so
 vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so
 vendor/lib64/hw/android.hardware.keymaster@3.0-impl-qti.so
@@ -1134,7 +1128,7 @@ vendor/lib64/libGPTEE_vendor.so
 vendor/lib64/libGPreqcancel.so
 vendor/lib64/libGPreqcancel_svc.so
 vendor/lib64/libI420colorconvert.so
--vendor/lib64/libMpeg4SwEncoder.so
+vendor/lib64/libMpeg4SwEncoder.so
 vendor/lib64/libOmxAacDec.so
 vendor/lib64/libOmxAlacDec.so
 vendor/lib64/libOmxAlacDecSw.so
@@ -1156,6 +1150,8 @@ vendor/lib64/libVkLayer_q3dtools.so
 vendor/lib64/lib_aion_buffer.so
 vendor/lib64/lib_goog_chi_node_utils.so
 vendor/lib64/lib_goog_metadata_utils.so
+vendor/lib64/lib_profiler.so
+vendor/lib64/lib_sensor_listener.so
 vendor/lib64/liba2dpoffload.so
 vendor/lib64/libacdb-fts.so
 vendor/lib64/libacdbloader.so
@@ -1175,7 +1171,6 @@ vendor/lib64/libaudioalsa.so
 vendor/lib64/libaudioconfigstore.so
 vendor/lib64/libaudioparsers.so
 vendor/lib64/libaudiozoom.so
-vendor/lib64/libautocalsolvers.so
 vendor/lib64/libautohal.so
 vendor/lib64/libbase64.so
 vendor/lib64/libbatterylistener.so
@@ -1198,7 +1193,7 @@ vendor/lib64/libcdsp_default_listener.so
 vendor/lib64/libcdsprpc.so
 vendor/lib64/libcertverifier.so
 vendor/lib64/libcirrusspkrprot.so
-vendor/lib64/libcne.so
+vendor/lib64/libcne.so;DISABLE_CHECKELF
 vendor/lib64/libcneapiclient.so
 vendor/lib64/libcneoplookup.so
 vendor/lib64/libcneqmiutils.so
@@ -1291,6 +1286,7 @@ vendor/lib64/liblqe.so
 vendor/lib64/libmaxxaudio.so
 vendor/lib64/libmdmdetect.so
 vendor/lib64/libmdsprpc.so
+vendor/lib64/libmedia_ecoservice.so
 vendor/lib64/libminkdescriptor.so
 vendor/lib64/libminksocket.so
 vendor/lib64/libmm-color-convertor.so
@@ -1304,7 +1300,13 @@ vendor/lib64/libnetmgr_nr_fusion.so
 vendor/lib64/libnetmgr_rmnet_ext.so
 vendor/lib64/libnlnetmgr.so
 vendor/lib64/libnoronha-pci.so
+vendor/lib64/libnos.so
 vendor/lib64/libnos_citadeld_proxy.so
+vendor/lib64/libnos_client_citadel.so
+vendor/lib64/libnos_datagram.so
+vendor/lib64/libnos_datagram_citadel.so
+vendor/lib64/libnos_transport.so
+vendor/lib64/libnosprotos.so
 vendor/lib64/liboemcrypto.so
 vendor/lib64/libopenvx.so
 vendor/lib64/libops.so
@@ -1347,7 +1349,7 @@ vendor/lib64/libril-qc-hal-qmi.so
 vendor/lib64/libril-qc-logger.so
 vendor/lib64/libril-qc-ltedirectdisc.so
 vendor/lib64/libril-qc-radioconfig.so
-vendor/lib64/libril-qcril-hook-oem.so
+vendor/lib64/libril-qcril-hook-oem.so;DISABLE_CHECKELF
 vendor/lib64/librilqmiservices.so
 vendor/lib64/librmnetctl.so
 vendor/lib64/librmp.so
@@ -1365,7 +1367,7 @@ vendor/lib64/libsdm-colormgr-algo.so
 vendor/lib64/libsdm-diag.so
 vendor/lib64/libsdm-disp-vndapis.so
 vendor/lib64/libsdmextension.so
--vendor/lib64/libsdsprpc.so
+vendor/lib64/libsdsprpc.so
 vendor/lib64/libsecureui.so
 vendor/lib64/libsecureui_svcsock.so
 vendor/lib64/libsensorslog.so
@@ -1407,10 +1409,14 @@ vendor/lib64/libvppimmotion.so
 vendor/lib64/libvsc.so
 vendor/lib64/libwlcproto_13.so
 vendor/lib64/libwms.so
-vendor/lib64/libwqe.so
+vendor/lib64/libwqe.so;DISABLE_CHECKELF
 vendor/lib64/libwvaidl.so
 vendor/lib64/libxml.so
 vendor/lib64/libxtadapter.so
+vendor/lib64/nos_app_avb.so
+vendor/lib64/nos_app_identity.so
+vendor/lib64/nos_app_keymaster.so
+vendor/lib64/nos_app_weaver.so
 vendor/lib64/qcrild_librilutils.so
 vendor/lib64/qtibus.so
 vendor/lib64/qtimutex.so
@@ -1440,9 +1446,6 @@ vendor/lib64/vendor.google.radioext@1.1.so
 vendor/lib64/vendor.google.radioext@1.2.so
 vendor/lib64/vendor.google.radioext@1.3.so
 vendor/lib64/vendor.google.wifi_ext@1.0.so
-vendor/lib64/vendor.google.wifi_ext@1.1.so
-vendor/lib64/vendor.google.wifi_ext@1.2.so
-vendor/lib64/vendor.google.wifi_ext@1.3.so
 vendor/lib64/vendor.google.wireless_charger@1.0.so
 vendor/lib64/vendor.google.wireless_charger@1.1.so
 vendor/lib64/vendor.google.wireless_charger@1.2.so
@@ -1506,7 +1509,7 @@ vendor/lib64/vendor.qti.hardware.radio.uim_remote_client@1.1.so
 vendor/lib64/vendor.qti.hardware.radio.uim_remote_client@1.2.so
 vendor/lib64/vendor.qti.hardware.radio.uim_remote_server@1.0.so
 vendor/lib64/vendor.qti.hardware.slmadapter@1.0.so
-vendor/lib64/vendor.qti.hardware.tui_comm@1.0.so
+vendor/lib64/vendor.qti.hardware.tui_comm@1.0.so;MODULE_SUFFIX=-vendor
 vendor/lib64/vendor.qti.hardware.vpp@1.1.so
 vendor/lib64/vendor.qti.hardware.vpp@1.2.so
 vendor/lib64/vendor.qti.hardware.wifidisplaysession@1.0.so
@@ -1520,7 +1523,7 @@ vendor/lib64/vendor.qti.ims.rcsconfig@1.1.so
 vendor/lib64/vendor.qti.ims.rcsconfig@2.0.so
 vendor/lib64/vendor.qti.ims.rcsconfig@2.1.so
 vendor/lib64/vendor.qti.imsrtpservice@3.0-service-Impl.so
-vendor/lib64/vendor.qti.imsrtpservice@3.0.so
+vendor/lib64/vendor.qti.imsrtpservice@3.0.so;MODULE_SUFFIX=-vendor
 vendor/lib64/vendor.qti.latency@2.0.so
 vendor/lib64/vendor.qti.latency@2.1.so
 vendor/lib64/vendor.qti.power.pasrmanager@1.0.so
